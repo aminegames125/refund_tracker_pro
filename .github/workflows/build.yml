@@ -93,11 +93,11 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     
-    - name: Build iOS Simulator
-      run: flutter build ios --debug --simulator
+    - name: Build iOS
+      run: flutter build ios --release --no-codesign
     
-    - name: Upload iOS Simulator Build
+    - name: Upload iOS Build
       uses: actions/upload-artifact@v4
       with:
-        name: refund-tracker-pro-ios-simulator
-        path: build/ios/iphonesimulator/Runner.app
+        name: refund-tracker-pro-ios
+        path: build/ios/iphoneos/Runner.app
