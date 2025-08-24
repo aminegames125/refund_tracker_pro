@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:ui="http://schemas.microsoft.com/wix/2006/wi/ui">
+    
+    <Product Id="*" 
+             Name="Refund Tracker Pro" 
+             Language="1033" 
+             Version="1.0.0.0" 
+             Manufacturer="Amino148" 
+             UpgradeCode="87654321-4321-4321-4321-210987654321">
+        
+        <Package InstallerVersion="200" 
+                 Compressed="yes" 
+                 InstallScope="perMachine"
+                 Description="Refund Tracker Pro - Comprehensive refund tracking application"
+                 Comments="Refund Tracker Pro installer"
+                 Manufacturer="Amino148" />
+        
+        <MajorUpgrade DowngradeErrorMessage="A newer version of Refund Tracker Pro is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+        
+        <Feature Id="ProductFeature" 
+                 Title="Refund Tracker Pro" 
+                 Level="1">
+            <ComponentGroupRef Id="ProductComponents" />
+        </Feature>
+        
+        <UIRef Id="WixUI_Minimal" />
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+        
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+        
+        <Icon Id="icon.ico" SourceFile="icon.ico" />
+        <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+        
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Refund Tracker Pro" />
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+        
+        <CustomAction Id="LaunchApplication" 
+                      FileKey="RefundTrackerProEXE" 
+                      ExeCommand="" 
+                      Return="asyncNoWait" />
+        
+        <UI>
+            <UIRef Id="WixUI_Minimal" />
+            <Publish Dialog="ExitDialog" 
+                     Control="Finish" 
+                     Event="DoAction" 
+                     Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+        </UI>
+    </Product>
+    
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="RefundTrackerPro">
+                    <Component Id="ProductComponents" Guid="*">
+                        <File Id="RefundTrackerProEXE" 
+                              Name="RefundTrackerPro.exe" 
+                              Source="RefundTrackerPro.exe" 
+                              KeyPath="yes" />
+                        
+                        <File Id="data_app" 
+                              Name="data" 
+                              Source="data" />
+                        
+                        <File Id="icudtl_dat" 
+                              Name="icudtl.dat" 
+                              Source="icudtl.dat" />
+                        
+                        <File Id="libflutter_windows" 
+                              Name="flutter_windows.dll" 
+                              Source="flutter_windows.dll" />
+                        
+                        <File Id="window_size_plugin" 
+                              Name="window_size_plugin.dll" 
+                              Source="window_size_plugin.dll" />
+                        
+                        <File Id="desktop_window_plugin" 
+                              Name="desktop_window_plugin.dll" 
+                              Source="desktop_window_plugin.dll" />
+                        
+                        <File Id="path_provider_windows" 
+                              Name="path_provider_windows_plugin.dll" 
+                              Source="path_provider_windows_plugin.dll" />
+                        
+                        <File Id="shared_preferences_windows" 
+                              Name="shared_preferences_windows_plugin.dll" 
+                              Source="shared_preferences_windows_plugin.dll" />
+                        
+                        <File Id="sqflite_plugin" 
+                              Name="sqlite3.dll" 
+                              Source="sqlite3.dll" />
+                        
+                        <File Id="sqflite_ffi_plugin" 
+                              Name="sqflite_ffi_plugin.dll" 
+                              Source="sqflite_ffi_plugin.dll" />
+                        
+                        <File Id="awesome_notifications" 
+                              Name="awesome_notifications_plugin.dll" 
+                              Source="awesome_notifications_plugin.dll" />
+                        
+                        <File Id="workmanager" 
+                              Name="workmanager_plugin.dll" 
+                              Source="workmanager_plugin.dll" />
+                        
+                        <File Id="permission_handler" 
+                              Name="permission_handler_windows_plugin.dll" 
+                              Source="permission_handler_windows_plugin.dll" />
+                        
+                        <File Id="package_info_plus" 
+                              Name="package_info_plus_windows_plugin.dll" 
+                              Source="package_info_plus_windows_plugin.dll" />
+                        
+                        <File Id="percent_indicator" 
+                              Name="percent_indicator_plugin.dll" 
+                              Source="percent_indicator_plugin.dll" />
+                        
+                        <File Id="uuid" 
+                              Name="uuid_plugin.dll" 
+                              Source="uuid_plugin.dll" />
+                        
+                        <File Id="intl" 
+                              Name="intl_plugin.dll" 
+                              Source="intl_plugin.dll" />
+                        
+                        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
+                        <RegistryValue Root="HKLM" 
+                                       Key="Software\Amino148\RefundTrackerPro" 
+                                       Name="installed" 
+                                       Type="integer" 
+                                       Value="1" 
+                                       KeyPath="yes" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+    </Fragment>
+    
+    <Fragment>
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            <ComponentRef Id="ProductComponents" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>
