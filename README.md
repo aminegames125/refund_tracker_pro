@@ -51,8 +51,8 @@ A comprehensive multi-platform refund tracking application built with Flutter. T
 ## 🏗️ Development Setup
 
 ### Prerequisites
-- Flutter SDK 3.24.5 or higher
-- Dart SDK 3.2.3 or higher
+- Flutter SDK 3.32.8 or higher
+- Dart SDK 3.8.1 or higher
 - Android Studio / VS Code
 - Git
 

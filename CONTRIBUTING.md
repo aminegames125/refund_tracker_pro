@@ -5,8 +5,8 @@ Thank you for your interest in contributing to Refund Tracker Pro! This document
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Flutter SDK 3.24.5 or higher
-- Dart SDK 3.2.3 or higher
+- Flutter SDK 3.32.8 or higher
+- Dart SDK 3.8.1 or higher
 - Git
 - A code editor (VS Code, Android Studio, etc.)
 

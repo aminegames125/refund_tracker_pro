@@ -51,8 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Responsive Design**: Adapts to different screen sizes
 
 ### Technical Details
-- Flutter 3.24.5
-- Dart 3.2.3
+- Flutter 3.32.8
+- Dart 3.8.1
 - Provider for state management
 - Awesome Notifications for notifications
 - Workmanager for background tasks
