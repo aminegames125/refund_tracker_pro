@@ -47,19 +47,11 @@ jobs:
     - name: Build Windows
       run: flutter build windows --release
     
-    - name: Create UWP Package
-      run: |
-        # Create APPX package for Windows Store
-        flutter build windows --release
-        cd build/windows/runner/Release
-        # Package the app for UWP distribution
-        powershell -Command "Compress-Archive -Path * -DestinationPath refund-tracker-pro-windows.zip"
-    
-    - name: Upload Windows Package
+    - name: Upload Windows Executable
       uses: actions/upload-artifact@v4
       with:
         name: refund-tracker-pro-windows
-        path: build/windows/runner/Release/refund-tracker-pro-windows.zip
+        path: build/windows/x64/runner/Release/refund_tracker_pro.exe
 
   linux:
     runs-on: ubuntu-latest
@@ -81,20 +73,11 @@ jobs:
     - name: Build Linux
       run: flutter build linux --release
     
-    - name: Create AppImage
-      run: |
-        # Download AppImage tool
-        wget -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-        chmod +x appimagetool-x86_64.AppImage
-        
-        # Create AppImage
-        ./appimagetool-x86_64.AppImage build/linux/x64/release/bundle refund-tracker-pro-linux.AppImage
-    
-    - name: Upload Linux AppImage
+    - name: Upload Linux Executable
       uses: actions/upload-artifact@v4
       with:
         name: refund-tracker-pro-linux
-        path: refund-tracker-pro-linux.AppImage
+        path: build/linux/x64/release/bundle/refund_tracker_pro
 
   ios:
     runs-on: macos-latest
@@ -110,11 +93,11 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     
-    - name: Build iOS
-      run: flutter build ios --release --no-codesign
+    - name: Build iOS Simulator
+      run: flutter build ios --release --simulator
     
-    - name: Upload iOS
+    - name: Upload iOS Simulator Build
       uses: actions/upload-artifact@v4
       with:
-        name: refund-tracker-pro-ios
-        path: build/ios/iphoneos/Runner.app
+        name: refund-tracker-pro-ios-simulator
+        path: build/ios/iphonesimulator/Runner.app
