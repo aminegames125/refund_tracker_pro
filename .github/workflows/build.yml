@@ -24,6 +24,12 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
     
+    - name: Configure Gradle Memory
+      run: |
+        echo "org.gradle.jvmargs=-Xmx4g -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> android/gradle.properties
+        echo "org.gradle.daemon=false" >> android/gradle.properties
+        echo "org.gradle.parallel=true" >> android/gradle.properties
+    
     - name: Install dependencies
       run: flutter pub get
     
